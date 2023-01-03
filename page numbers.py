@@ -2,15 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 
-options = webdriver.ChromeOptions()                                             # three lines of code at 15,16 and 17 do same thing but output error messages.
-options.add_experimental_option('excludeSwitches', ['enable-logging'])          # lines 10,11,12 stop that! Nicer log of data in terminal!
-
-driver = webdriver.Chrome(options=options)
-driver.get("https://www.agencycentral.co.uk/agencysearch/engineering/agencysearch.htm")
-
-#chromedriver = 'C:/Users/James Mills/Documents/GitHub/Web Scraping/chromedriver.exe'       # finds chrome driver, assigns file path to variable
-#driver = webdriver.Chrome(chromedriver)                                                    # use module webdriver to enable chromedriver.exe
-#driver.get("https://www.google.com/")                                                      # opens URL associated to .get function
+chromedriver = 'C:/Users/James Mills/Documents/GitHub/Web Scraping/chromedriver.exe'       # finds chrome driver, assigns file path to variable
+driver = webdriver.Chrome(chromedriver)                                                    # use module webdriver to enable chromedriver.exe
+driver.get("https://www.agencycentral.co.uk/agencysearch/engineering/agencysearch.htm")    # opens URL associated to .get function
 
 filePath1 = r"C:\Users\James Mills\Documents\GitHub\Web-Scraping-Scripts\first_agency_xpaths.txt"
 openFile1 = open(filePath1,"r")
@@ -34,12 +28,11 @@ def first_agency():
             infoEnter = driver.find_element(By.XPATH, xpaths[c]).send_keys(step)
     
 
-def all_other_agencies():                                           # placeholder for additional function to access rest of the URL's on this page.
+def all_other_agencies():                                                                   # placeholder for additional function to access rest of the URL's on this page.
     i = 0
-
 
 first_agency()
 
-time.sleep(30)                                                                               # keeps tab open for 20 seconds
+time.sleep(30)                                                                              # keeps tab open for 20 seconds
 driver.quit()                                                                               # closes window, ends program
 
