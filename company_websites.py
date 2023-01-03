@@ -1,5 +1,5 @@
 ######
-# function: opens up website for agencycentral and crawls through to the 1st recruitment agency website.
+# function: opens up website for agency central and crawls through to the 1st recruitment agency website.
 # future improvements:
 #   - use of cookies instead of the function "first_agency" to minimise time spent running program on startup.
 #   - "first_agency_xpaths" file will change from full xpath to xpath relative to features on page, will improve redundancy if website is updated in future.
