@@ -1,6 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 
+######
+# Function: gather all agency names from the url specified in this script.
+# Future improvements: None.
+######
+
 #Global Variables:
 url = 'https://www.agencycentral.co.uk/agencysearch/engineering/agencysearch.htm'
 class_list = []
