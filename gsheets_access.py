@@ -1,12 +1,16 @@
+######
+# Function: create link between python script and gsheets-API.
+# DISCLAIMER: code referenced from the following repository - https://github.com/d4vidsha/python-requests-to-google-sheets-api
+######
 
 from requests import request
 import json
 
 # config
-CLIENT_ID = "515096878995-1j18e0pmhvvf24308iv8gcmkrr7o3rq9.apps.googleusercontent.com"
-CLIENT_SECRET = "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"
-REFRESH_TOKEN = "1//036bt_cdxDO1gCgYIARAAGAMSNwF-L9Ir8V55HeaJOm-_Cc_Zq1RCO-_WzvITEmTAwQGGdfuj8sVbqz_cVhY4h1R8rZyYfaB1LtU"
-SID = "1Ebj-fcGopy3N8gstFrp08Lj3lSBspSBvbTNVM-q5pko"
+CLIENT_ID = "515096878995-1j18e0pmhvvf24308i8gcmkrr7o3rq9.apps.googleusercontent.com"
+CLIENT_SECRET = "GOCSPX-uCzDcWxg3boKP92J3EABSsVyYaj"
+REFRESH_TOKEN = "1//036bt_cdxDO1gCgYIARAAGAMSNwF-L9Ir8V5HeaJOm-_Cc_Zq1RCO-_WzvITEmTAwQGGdfuj8sVbqz_cVhY4h1R8rZyYfaB1LtU"
+SID = "1Ebj-fcGopy3N8gstFrp08Lj3lSBspSBvTNVM-q5pko"
 
 # constants
 SPACE = " "
