@@ -1,3 +1,14 @@
+######
+# function: opens up website for agencycentral and crawls through to the 1st recruitment agency website.
+# future improvements:
+#   - use of cookies instead of the function "first_agency" to minimise time spent running program on startup.
+#   - "first_agency_xpaths" file will change from full xpath to xpath relative to features on page, will improve redundancy if website is updated in future.
+#   - collect url once individual agency website reached, close tab, repeat for entire page.
+#   - click on next page once all data for current agencies on page is collected.
+#   - upload data into excel alongside the "company_name" script.
+######
+
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
