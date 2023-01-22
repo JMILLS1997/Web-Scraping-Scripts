@@ -15,7 +15,6 @@ import time
 url_list = []                                                                                           # blank list to contain all collected URL's. Will be added to excel at a later stage.
 branch_list = []
 
-
 filePath = r"C:\Users\James Mills\Documents\GitHub\Web-Scraping-Scripts\uk_cities_listed.txt"           # angency central requires some locational input for certain agencies, this code accesses a list of cities in UK for reference where required.
 openFile = open(filePath,"r")
 data = openFile.read()
@@ -31,12 +30,10 @@ for cookie in cookies:
     driver.add_cookie(cookie)
 
 driver.refresh()                                                                                        # refresh page to implement cookies loaded previously
-
 elements = WebDriverWait(driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH, '//*[@id="contact-button-visit-website"]')))        # collects all relevant elemants by rel. XPATH.
 
 def location():
-    time.sleep(2)
-    print(len(driver.window_handles))
+    time.sleep(5)                                                                                       # needs a manual wait for driver to update with current tab('window') count
     if len(driver.window_handles) == 1:
         try:
             WebDriverWait(driver,20).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="agency-branch-selection"]/div[3]/div/ul/li/span[1]'))).click()        
@@ -46,13 +43,10 @@ def location():
         pass 
 
 
-
-def agency_url():                                                                                        # function to iterate through the data collected by "elements".
-    x = 0
-    while x < 3:                                                                                         # limits loop, will remove once script ready to go through entire website.
+def agency_url():                                                                                        # function to iterate through the data collected by "elements".                                                                                     # limits loop, will remove once script ready to go through entire website.
         for element in elements:                                                                         # for each instance of data collected in the list "elements"...        
-            element.click()                                                                          # click on the relvant element  
-            location()                                                                                                              
+            element.click()                                                                              # click on the relvant element  
+            location()                                                                                   # runs function "location"                           
             WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))                               # driver waits for number of tabs to = 2 before moving onto next operation
             new_tab = driver.window_handles[1]                                                           # window handles is a list of the various tabs open in a browser
             driver.switch_to.window(new_tab)                                                             # switches focus to new tab
@@ -63,10 +57,9 @@ def agency_url():                                                               
             WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(1))                               # waits for driver to see total number of tabs = 1
             driver.switch_to.window(driver.window_handles[0])                                            # focuses on orignal tab
             time.sleep(3)
-            x = x + 1
 
 agency_url()
     
-time.sleep(5)                                                                             # keeps tab open for 500 seconds
-driver.quit()                                                                               # closes window, ends program
+time.sleep(5)                                                                                            # keeps tab open for 5 seconds
+driver.quit()                                                                                            # closes window, ends program
 

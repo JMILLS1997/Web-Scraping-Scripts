@@ -1,0 +1,70 @@
+Leeds
+Manchester
+York
+Sheffield
+Bradford
+Birmingham
+Nottingham
+Bristol
+Oxford
+Bath
+London
+Cardiff
+Aberdeen
+Armagh
+Bangor
+Belfast
+Bradford
+Brighton & Hove
+Cambridge
+Canterbury
+Carlisle
+Chelmsford
+Chester
+Chichester
+Coventry
+Derby
+Derry
+Dundee
+Durham
+Edinburgh
+Ely
+Exeter
+Glasgow
+Gloucester
+Hereford
+Inverness
+Kingston upon Hull
+Lancaster
+Leicester
+Lichfield
+Lincoln
+Lisburn
+Liverpool
+Newcastle upon Tyne
+Newport
+Newry
+Norwich
+Perth
+Peterborough
+Plymouth
+Portsmouth
+Preston
+Ripon
+St Albans
+St Asaph
+St Davids
+Salford
+Salisbury
+Southampton
+Stirling
+Stoke-on-Trent
+Sunderland
+Swansea
+Truro
+Wakefield
+Wells
+Westminster
+Winchester
+Wolverhampton
+Worcester
