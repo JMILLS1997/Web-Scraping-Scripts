@@ -10,13 +10,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException as EX
+#from selenium.common.exceptions import e
 import pickle
 import time
 
 
 
 
-x = 0
+
 ######################################## FUNCTIONS #######################################################
 def load_cookies():  
         cookies1 = pickle.load(open('cookies1.pkl', 'rb'))                                                        # loads cookies to the browser
@@ -57,14 +58,14 @@ def next_page_url():
         next_page_url_collect = driver.current_url                                                             # collects current tab's URL                                                             
         ac_url_list.append(next_page_url_collect)
         window()                                                                 # appends collected URL data to list "url_list"
-    finally:
+    except:
         pass
     x = x + 1
 
 def next_page():
     time.sleep(2)
     try:
-        next_button = WebDriverWait(driver,20).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="search-results-container"]/ul/li[13]/a')))
+        next_button = WebDriverWait(driver,10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="search-results-container"]/ul/li[13]/a')))
         next = next_button.get_attribute('href')
         driver.get(next)
         
@@ -96,6 +97,7 @@ def website_open():
 
 
 ######################################## SCRIPT #######################################################
+x = 0
 agency_url_list = []                                                                                           # blank list to contain all collected URL's. Will be added to excel at a later stage.
 ac_url_list = ["https://www.agencycentral.co.uk/agencysearch/engineering/agencysearch.htm?page=17"]
 
@@ -106,9 +108,3 @@ for a in ac_url_list:
     next_page()
     next_page_url()
     driver.quit()
-
-time.sleep(5)                                                                                            # keeps tab open for 5 seconds
-driver.quit()                                                                                            # closes window, ends program
-
-
-#implement use of next page url collection then .get that url and see if cookies work that way.
