@@ -1,9 +1,11 @@
-######
-#: opens up website for agency central and crawls through to the 1st recruitment agency website.
+##################################################################################################
+#: opens up website for agency central and crawls through to the recruitment agency website.
 # future improvements:
-#   - click on next page once all data for current agencies on page is collected
-#   - upload data into excel alongside the "company_name" script
-######
+#   - click on next page once all data for current agencies on page is collected - IMPLEMENTED
+#   - upload data into excel alongside the "company_name" script - SEE OTHER SCRIPTS
+##################################################################################################
+
+
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -15,14 +17,13 @@ import time
 
 
 
-
-
-######################################## FUNCTIONS #######################################################
 def load_cookies():  
         cookies1 = pickle.load(open('cookies1.pkl', 'rb'))                                              # loads cookies to the browser
         for cookie1 in cookies1:
             driver.add_cookie(cookie1)
         driver.refresh()                                                                                # refresh page to implement cookies loaded previously
+
+
 
 def location():
     time.sleep(5)                                                                                       # needs a manual wait for driver to update with current tab('window') count
@@ -34,6 +35,8 @@ def location():
     else:
         pass 
 
+
+
 def window():
     time.sleep(3)
     if len(driver.window_handles) == 2:
@@ -41,14 +44,19 @@ def window():
     elif len(driver.window_handles) == 1:
         pass
 
+
+
 def url_collect():
     try:
         time.sleep(3)
         url_collect = driver.current_url                                                             # collects current tab's URL                                                             
         agency_url_list.append(url_collect)
+        print(url_collect)
         window()                                                                                     # appends collected URL data to list "url_list"
     finally:
         pass
+
+
 
 def next_page_url():
     global x
@@ -61,6 +69,8 @@ def next_page_url():
         pass
     x = x + 1
 
+
+
 def next_page():
     time.sleep(2)
     try:
@@ -70,7 +80,9 @@ def next_page():
         
     except EX:
         driver.quit()
-    
+
+
+
 def agency_url():                                                                                                                                       # to iterate through the data collected by "elements".                                                                                     
         elements = WebDriverWait(driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH, '//*[@id="contact-button-visit-website"]')))
         for element in elements:                                                                                                                       # for each instance of data collected in the list "elements"...        
@@ -85,25 +97,26 @@ def agency_url():                                                               
             time.sleep(3)
 
 
+
 def website_open():
     global driver
     options = webdriver.ChromeOptions()                                                                     # allows for use of ChromeDriver without exceptions flagging up or other bugs that are yet to be removed.
+   #options.headless = True                                                                                 # from what I can tell, headless options does not work for all websites so plan is to keep this headed.
     options.add_experimental_option('excludeSwitches', ['enable-logging'])                       
     driver = webdriver.Chrome(options=options)
     driver.get(ac_url_list[x])
 
 
 
+def initiate_data_collection():
+    x = 0
+    agency_url_list = []                                                                                           # blank list to contain all collected URL's. Will be added to excel at a later stage.
+    ac_url_list = ["https://www.agencycentral.co.uk/agencysearch/engineering/agencysearch.htm"]
 
-######################################## SCRIPT #######################################################
-x = 0
-agency_url_list = []                                                                                           # blank list to contain all collected URL's. Will be added to excel at a later stage.
-ac_url_list = ["https://www.agencycentral.co.uk/agencysearch/engineering/agencysearch.htm?page=17"]
-
-for a in ac_url_list:
-    website_open()
-    load_cookies()
-    agency_url()
-    next_page()
-    next_page_url()
-    driver.quit()
+    for a in ac_url_list:
+        website_open()
+        load_cookies()
+        agency_url()
+        next_page()
+        next_page_url()
+        driver.quit()
