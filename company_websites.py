@@ -10,7 +10,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException as EX
-#from selenium.common.exceptions import e
 import pickle
 import time
 
@@ -20,10 +19,10 @@ import time
 
 ######################################## FUNCTIONS #######################################################
 def load_cookies():  
-        cookies1 = pickle.load(open('cookies1.pkl', 'rb'))                                                        # loads cookies to the browser
+        cookies1 = pickle.load(open('cookies1.pkl', 'rb'))                                              # loads cookies to the browser
         for cookie1 in cookies1:
             driver.add_cookie(cookie1)
-        driver.refresh()                                                                                       # refresh page to implement cookies loaded previously
+        driver.refresh()                                                                                # refresh page to implement cookies loaded previously
 
 def location():
     time.sleep(5)                                                                                       # needs a manual wait for driver to update with current tab('window') count
@@ -47,7 +46,7 @@ def url_collect():
         time.sleep(3)
         url_collect = driver.current_url                                                             # collects current tab's URL                                                             
         agency_url_list.append(url_collect)
-        window()                                                                 # appends collected URL data to list "url_list"
+        window()                                                                                     # appends collected URL data to list "url_list"
     finally:
         pass
 
@@ -55,9 +54,9 @@ def next_page_url():
     global x
     try:
         time.sleep(3)
-        next_page_url_collect = driver.current_url                                                             # collects current tab's URL                                                             
+        next_page_url_collect = driver.current_url                                                   # collects current tab's URL                                                             
         ac_url_list.append(next_page_url_collect)
-        window()                                                                 # appends collected URL data to list "url_list"
+        window()                                                                                     # appends collected URL data to list "url_list"
     except:
         pass
     x = x + 1
@@ -72,17 +71,17 @@ def next_page():
     except EX:
         driver.quit()
     
-def agency_url():                                                                                        # to iterate through the data collected by "elements".                                                                                     
-            elements = WebDriverWait(driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH, '//*[@id="contact-button-visit-website"]')))
-        #for element in elements:                                                                         # for each instance of data collected in the list "elements"...        
-            elements[-1].click()                                                                              # click on the relvant element  
-            location()                                                                                   # runs "location"                           
-            WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))                               # driver waits for number of tabs to = 2 before moving onto next operation
-            new_tab = driver.window_handles[1]                                                           # window handles is a list of the various tabs open in a browser
-            driver.switch_to.window(new_tab)                                                             # switches focus to new tab
-            url_collect()                                                                               # closes current tab
-            WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(1))                               # waits for driver to see total number of tabs = 1
-            driver.switch_to.window(driver.window_handles[0])                                            # focuses on orignal tab
+def agency_url():                                                                                                                                       # to iterate through the data collected by "elements".                                                                                     
+        elements = WebDriverWait(driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH, '//*[@id="contact-button-visit-website"]')))
+        for element in elements:                                                                                                                       # for each instance of data collected in the list "elements"...        
+            element.click()                                                                                                                        # click on the relvant element  
+            location()                                                                                                                                  # runs "location"                           
+            WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))                                                                              # driver waits for number of tabs to = 2 before moving onto next operation
+            new_tab = driver.window_handles[1]                                                                                                          # window handles is a list of the various tabs open in a browser
+            driver.switch_to.window(new_tab)                                                                                                            # switches focus to new tab
+            url_collect()                                                                                                                               # closes current tab
+            WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(1))                                                                              # waits for driver to see total number of tabs = 1
+            driver.switch_to.window(driver.window_handles[0])                                                                                           # focuses on orignal tab
             time.sleep(3)
 
 
