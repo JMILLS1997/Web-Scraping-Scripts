@@ -85,8 +85,8 @@ def next_page():
 
 def agency_url():                                                                                                                                       # to iterate through the data collected by "elements".                                                                                     
         elements = WebDriverWait(driver, 10).until(EC.visibility_of_all_elements_located((By.XPATH, '//*[@id="contact-button-visit-website"]')))
-        for element in elements:                                                                                                                       # for each instance of data collected in the list "elements"...        
-            element.click()                                                                                                                        # click on the relvant element  
+        for element in elements:                                                                                                                        # for each instance of data collected in the list "elements"...        
+            element.click()                                                                                                                             # click on the relvant element  
             location()                                                                                                                                  # runs "location"                           
             WebDriverWait(driver, 10).until(EC.number_of_windows_to_be(2))                                                                              # driver waits for number of tabs to = 2 before moving onto next operation
             new_tab = driver.window_handles[1]                                                                                                          # window handles is a list of the various tabs open in a browser
@@ -109,6 +109,7 @@ def website_open():
 
 
 def initiate_data_collection():
+    global x, agency_url_list
     x = 0
     agency_url_list = []                                                                                           # blank list to contain all collected URL's. Will be added to excel at a later stage.
     ac_url_list = ["https://www.agencycentral.co.uk/agencysearch/engineering/agencysearch.htm"]
